@@ -1,4 +1,5 @@
 import { connectDB } from "../utils/db.js"
+import {hash} from "../utils/hash.js"
 
 export const getUsers = async (req, res) => {
     const sql = await connectDB()

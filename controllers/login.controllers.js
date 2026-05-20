@@ -1,4 +1,5 @@
 import { connectDB } from "../utils/db.js"
+import {hash} from "../utils/hash.js"
 const sql = await connectDB()
 
 export const login = async (req, res) => {
@@ -10,7 +11,7 @@ export const login = async (req, res) => {
         res.status[404].json[{login:false, user:{}}]
         return
     }
-    
+    const hashed = hash(password)
     if (result.rows[0].password === password) {
         res.status[200].json[{login:true, user:result.rows[0]}]
     }else{
